@@ -396,15 +396,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(3)">
+            <button onclick="chooseAnswer(2, 'أقل من 20', 3)">
                 أقل من 20
             </button>
 
-            <button onclick="nextPage(3)">
+            <button onclick="chooseAnswer(2, 'من 20 إلى 35', 3)">
                 من 20 إلى 35
             </button>
 
-            <button onclick="nextPage(3)">
+            <button onclick="chooseAnswer(2, 'أكبر من 35', 3)">
                 أكبر من 35
             </button>
 
@@ -424,19 +424,19 @@
 
         <div class="options">
 
-            <button onclick="nextPage(4)">
+            <button onclick="chooseAnswer(3, 'نفسية', 4)">
                 نفسية
             </button>
 
-            <button onclick="nextPage(4)">
+            <button onclick="chooseAnswer(3, 'عاطفية', 4)">
                 عاطفية
             </button>
 
-            <button onclick="nextPage(4)">
+            <button onclick="chooseAnswer(3, 'اجتماعية', 4)">
                 اجتماعية
             </button>
 
-            <button onclick="nextPage(4)">
+            <button onclick="chooseAnswer(3, 'مادية', 4)">
                 مادية
             </button>
 
@@ -456,15 +456,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(5)">
+            <button onclick="chooseAnswer(4, 'منذ زمن', 5)">
                 منذ زمن
             </button>
 
-            <button onclick="nextPage(5)">
+            <button onclick="chooseAnswer(4, 'من بضع سنوات', 5)">
                 من بضع سنوات
             </button>
 
-            <button onclick="nextPage(5)">
+            <button onclick="chooseAnswer(4, 'حديثة', 5)">
                 حديثة
             </button>
 
@@ -484,15 +484,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(6)">
+            <button onclick="chooseAnswer(5, 'نعم', 6)">
                 نعم
             </button>
 
-            <button onclick="nextPage(6)">
+            <button onclick="chooseAnswer(5, 'لا', 6)">
                 لا
             </button>
 
-            <button onclick="nextPage(6)">
+            <button onclick="chooseAnswer(5, 'لست أدري', 6)">
                 لست أدري
             </button>
 
@@ -512,15 +512,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(7)">
+            <button onclick="chooseAnswer(6, 'نعم يمكن حلها', 7)">
                 نعم يمكن حلها
             </button>
 
-            <button onclick="nextPage(7)">
+            <button onclick="chooseAnswer(6, 'لا غير ممكن', 7)">
                 لا غير ممكن
             </button>
 
-            <button onclick="nextPage(7)">
+            <button onclick="chooseAnswer(6, 'ممكن لكن ليس في الوقت الحالي', 7)">
                 ممكن لكن ليس في الوقت الحالي
             </button>
 
@@ -540,15 +540,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(8)">
+            <button onclick="chooseAnswer(7, 'أنا', 8)">
                 أنا
             </button>
 
-            <button onclick="nextPage(8)">
+            <button onclick="chooseAnswer(7, 'لا، بشخص آخر', 8)">
                 لا، بشخص آخر
             </button>
 
-            <button onclick="nextPage(8)">
+            <button onclick="chooseAnswer(7, 'لست أدري', 8)">
                 لست أدري
             </button>
 
@@ -568,15 +568,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(9)">
+            <button onclick="chooseAnswer(8, 'أحيانًا', 9)">
                 أحيانًا
             </button>
 
-            <button onclick="nextPage(9)">
+            <button onclick="chooseAnswer(8, 'لا، أول مرة', 9)">
                 لا، أول مرة
             </button>
 
-            <button onclick="nextPage(9)">
+            <button onclick="chooseAnswer(8, 'دائمًا', 9)">
                 دائمًا
             </button>
 
@@ -622,15 +622,15 @@
 
         <div class="options">
 
-            <button onclick="nextPage(11)">
+            <button onclick="chooseAnswer(10, 'نعم', 11)">
                 نعم
             </button>
 
-            <button onclick="nextPage(11)">
+            <button onclick="chooseAnswer(10, 'بالتأكيد', 11)">
                 بالتأكيد
             </button>
 
-            <button onclick="nextPage(11)">
+            <button onclick="chooseAnswer(10, 'دا مش أوبشن', 11)">
                 دا مش أوبشن
             </button>
 
@@ -697,28 +697,74 @@
 
 
 <script>
+    // بعد إنشاء Google Apps Script، ضع رابط Web App هنا:
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbypQBEGMf7I52fCHj_-8k4yBU2rKsUbOsRcegwlT1R9q9w1NoYQ2HHmkqfBTq3h7WmaPw/exec";
 
-    function nextPage(pageNumber) {
+    const answers = {};
 
-        const pages =
-            document.querySelectorAll(".page");
+    const questions = {
+        2: "السن؟",
+        3: "نوع المشكلة؟",
+        4: "عمر المشكلة؟",
+        5: "هل حاول أحد مساعدتك في هذه المشكلة؟",
+        6: "هل تعتقدي أن لمشكلتك حل؟",
+        7: "هل المشكلة تحل بك أم بشخص آخر؟",
+        8: "هل تزور موقع كيموكونو باستمرار؟",
+        10: "هل ستعملين بالنصيحة؟"
+    };
 
-        pages.forEach(function(page) {
-
-            page.classList.add("hidden");
-
-        });
-
-
-        const next =
-            document.getElementById(
-                "page" + pageNumber
-            );
-
-        next.classList.remove("hidden");
-
+    function chooseAnswer(questionPage, answer, nextPageNumber) {
+        answers[questions[questionPage]] = answer;
+        nextPage(nextPageNumber);
     }
 
+    function nextPage(pageNumber) {
+        const pages = document.querySelectorAll(".page");
+
+        pages.forEach(function(page) {
+            page.classList.add("hidden");
+        });
+
+        const next = document.getElementById("page" + pageNumber);
+
+        if (next) {
+            next.classList.remove("hidden");
+        }
+
+        if (pageNumber === 12) {
+            sendAnswers();
+        }
+    }
+
+    async function sendAnswers() {
+        if (window.answersSent) return;
+        window.answersSent = true;
+
+        if (GOOGLE_SCRIPT_URL === "PUT_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+            console.warn("ضع رابط Google Apps Script داخل GOOGLE_SCRIPT_URL.");
+            return;
+        }
+
+        const data = {
+            timestamp: new Date().toLocaleString("ar-EG"),
+            answers: answers
+        };
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(data)
+            });
+
+            console.log("تم إرسال الإجابات.");
+        } catch (error) {
+            console.error("فشل إرسال الإجابات:", error);
+        }
+    }
 </script>
 
 
